@@ -8,7 +8,9 @@
 [![Total Downloads](https://poser.pugx.org/dominus77/yii2-advanced-start/downloads)](https://packagist.org/packages/dominus77/yii2-advanced-start)
 
 La aplicación está construida con un patrón avanzado y tiene una estructura modular.
+
 La parte del backend utiliza la plantilla [AdminLTE] (https://adminlte.io/).
+
 Hay comandos de gestión de usuarios de consola disponibles y un sistema de RBAC (control de acceso basado en roles).
 
 ## Base components
