@@ -7,9 +7,9 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/Dominus77/yii2-advanced-start/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Total Downloads](https://poser.pugx.org/dominus77/yii2-advanced-start/downloads)](https://packagist.org/packages/dominus77/yii2-advanced-start)
 
-The application is built using advanced pattern and has a modular structure.
-Backend part uses [AdminLTE](https://adminlte.io/) template
-Available console user management commands and RBAC system.
+La aplicación está construida con un patrón avanzado y tiene una estructura modular.
+La parte del backend utiliza la plantilla [AdminLTE] (https://adminlte.io/).
+Hay comandos de gestión de usuarios de consola disponibles y un sistema de RBAC (control de acceso basado en roles).
 
 ## Base components
 Pages (backend AdminLTE template)
