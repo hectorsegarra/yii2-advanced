@@ -15,4 +15,4 @@ return ArrayHelper::merge($messages, [
     'Meanwhile, you may {:Link} or try using the search form.' => 'Mientras tanto, puedes {:Link} o intentar utilizar el formulario de búsqueda.',
     'More info' => 'Más información',
     'User Registrations' => 'Registros de usuario',
-]);
+]); 
