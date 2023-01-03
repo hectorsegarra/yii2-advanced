@@ -1,12 +1,12 @@
 {
-    "name": "dominus77/yii2-advanced-start",
-    "description": "Yii 2 Advanced start template on Yii2",
+    "name": "hectorsegarra/yii2-advanced-start",
+    "description": "Plantilla avanzada de yii2 modificada de su autor original: dominus77",
     "keywords": ["Dominus77", "yii2", "framework", "advanced", "project template"],
-    "homepage": "http://dominus77.github.io/yii2-advanced-start",
+    "homepage": "https://github.com/hectorsegarra/yii2-advanced-start.git",
     "type": "project",
     "license": "MIT",
     "support": {
-        "source": "https://github.com/Dominus77/yii2-advanced-start"
+        "source": "https://github.com/hectorsegarra/yii2-advanced-start"
     },
     "minimum-stability": "stable",
     "require": {
@@ -28,7 +28,10 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-imagine": "^2.0",
         "yiisoft/yii2-jui": "^2.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "kartik-v/yii2-widgets": "dev-master",
+        "kartik-v/yii2-dynagrid": "dev-master",
+        "kartik-v/yii2-datecontrol": "dev-master"
     },
     "require-dev": {
         "codeception/codeception": "^4.0",
