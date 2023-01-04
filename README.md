@@ -171,13 +171,13 @@ The preferred way to install this project is through [composer](http://getcompos
 
 Create a project:
 ```bash
-composer create-project --prefer-dist --stability=dev dominus77/yii2-advanced-start public_html
+composer create-project --prefer-dist --stability=dev hectorsegarra/yii2-advanced-start public_html
 ```
 
 or clone the repository for `pull` command availability:
 
 ```bash
-git clone https://github.com/Dominus77/yii2-advanced-start.git public_html
+git clone https://github.com/hectorsegarra/yii2-advanced-start.git public_html
 cd public_html
 composer install
 ```
