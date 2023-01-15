@@ -8,6 +8,10 @@
     "support": {
         "source": "https://github.com/hectorsegarra/yii2-advanced-start"
     },
+<<<<<<< HEAD
+=======
+    "minimum-stability": "dev",
+>>>>>>> e51ab60c355b4afb022a62b953008c5eb75e2416
     "require": {
         "php": ">=5.6",
         "ext-json": "*",
