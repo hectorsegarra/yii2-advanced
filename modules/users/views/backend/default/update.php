@@ -18,18 +18,14 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
 ?>
 
 <div class="users-backend-default-update">
+    
+    <?=$this->render('@modules/users/views/backend/default/tabs/_menu_tabs',['modelUsuario'=>$model]);?>
+
     <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($model->username); ?></h3>
-        </div>
         <?php $form = ActiveForm::begin(); ?>
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <?= $form->field($model, 'username')->textInput([
-                        'maxlength' => true,
-                        'placeholder' => true,
-                    ]) ?>
 
                     <?= $form->field($model, 'email')->textInput([
                         'maxlength' => true,
@@ -45,21 +41,22 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
 
                     <hr>
 
-                    <?= $form->field($model->profile, 'first_name')->textInput([
-                        'maxlength' => true,
-                        'placeholder' => true,
-                    ]) ?>
-
-                    <?= $form->field($model->profile, 'last_name')->textInput([
-                        'maxlength' => true,
-                        'placeholder' => true,
-                    ]) ?>
-
                     <?= $form->field($model->profile, 'email_gravatar')->textInput([
                         'maxlength' => true,
                         'placeholder' => true,
                     ]) ?>
                 </div>
+
+                <?php
+                    echo $this->renderFile(Yii::getAlias('@modules/users/views/backend/default/_form.php'), [
+                        'model' => $model,
+                        'profile' => $model->profile,
+                        'uploadFormModel' => $uploadFormModel,
+                        'form'=>$form,
+                    ]);
+                ?>
+
+
             </div>
         </div>
         <div class="box-footer">
