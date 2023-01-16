@@ -12,7 +12,7 @@ use modules\users\Module;
  */
 
 $this->title = Module::translate('module', 'View');
-$this->params['title']['small'] = $model->username;
+$this->params['title']['small'] = $model->userFullName;
 
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Module::translate('module', 'View');
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'View');
 <div class="users-backend-default-view">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($model->username); ?></h3>
+            <h3 class="box-title"><?= Html::encode($model->userFullName); ?></h3>
         </div>
         <div class="nav-tabs-custom">
             <?= Tabs::widget([

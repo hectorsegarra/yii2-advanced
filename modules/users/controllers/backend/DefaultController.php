@@ -256,6 +256,92 @@ class DefaultController extends Controller
         ]);
     }
 
+
+     /**
+     * Upload file
+     * @return Response
+     * @throws Exception
+     */
+    public function actionUploadImage($user_id)
+    {
+        
+        $model = new UploadForm(['user_id'=>$user_id]);
+        
+        if (Yii::$app->request->isPost) {
+            /** @var yii\web\Session $session */
+            $session = Yii::$app->session;
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+
+            
+
+            if (($result = $model->upload()) && !is_string($result)) {
+                if (isset($result['imageFile'][0])) {
+                    $session->setFlash('error', $result['imageFile'][0]);
+                } else {
+                    $session->setFlash('error', Module::translate('module', 'Failed to upload file.'));
+                }
+                return $this->redirect(['/user/update', 'id'=> $user_id]);
+            }
+        }
+        return $this->redirect(['/user/update', 'id'=> $user_id,'modal' => 'show']);
+    }
+
+/**
+     * Delete Avatar files
+     * @param int|string $id
+     * @return Response
+     */
+    public function actionDeleteAvatar($id)
+    {
+        $model = new UploadForm(['user_id'=>$id]);
+        $fileName = $model->getFileName();
+        $avatar = $model->getPath($id) . DIRECTORY_SEPARATOR . $fileName;
+        $thumb = $model->getPath($id) . DIRECTORY_SEPARATOR . UploadForm::PREFIX_THUMBNAIL . $fileName;
+        $original = $model->getPath($id) . DIRECTORY_SEPARATOR . UploadForm::PREFIX_ORIGINAL . $fileName;
+        $model->delete([$avatar, $thumb, $original]);
+        /** @var yii\web\Session $session */
+        $session = Yii::$app->session;
+        $session->setFlash('success', Module::translate('module', 'Successfully deleted.'));
+        return $this->redirect(['update', 'id' => $id]);
+    }
+
+    /**
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionUpdateAvatar($id)
+    {
+       
+        $model=User::findOne($id);
+        
+        /** @var yii\web\Session $session */
+        $session = Yii::$app->session;
+        $load = $model->profile->load(Yii::$app->request->post());
+        if ($load && $model->profile->save()) {
+            $session->setFlash('success', Module::translate('module', 'Form successfully saved.'));
+        } else {
+            $session->setFlash('error', Module::translate('module', 'Error! Failed to save the form.'));
+        }
+        return $this->redirect(['update', 'id' => $model->id]);
+    } 
+
+    /**
+     * Crop image
+     * @return Response
+     */
+    public function actionCropAvatar($id)
+    {
+        
+        $model = new UploadForm(['user_id'=>$id]);
+        
+        /** @var yii\web\Session $session */
+        $session = Yii::$app->session;
+        if (($post = Yii::$app->request->post()) && $model->load($post) && $model->crop()) {
+            $session->setFlash('success', Module::translate('module', 'User avatar successfully save.'));
+        }
+        return $this->redirect(['update', 'id' => $id]);
+    }
+    
     /**
      * @param int|string $id
      * @return array|Response

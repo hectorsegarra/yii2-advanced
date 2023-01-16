@@ -21,6 +21,20 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
     
     <?=$this->render('@modules/users/views/backend/default/tabs/_menu_tabs',['modelUsuario'=>$model]);?>
 
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title texto-azul">Avatar</h3>
+        </div>
+        <div class="box-body">
+            <?php
+                echo $this->renderFile(Yii::getAlias('@modules/users/views/common/profile/tabs/_update_avatar.php'), [
+                    'model' => $model,
+                    'uploadFormModel' => $uploadFormModel,
+                ]);
+            ?>
+        </div>
+    </div>
+
     <div class="box">
         <?php $form = ActiveForm::begin(); ?>
         <div class="box-body">

@@ -41,7 +41,7 @@ return [
     'Permission' => 'Permiso',
     'Rule' => 'Regla',
     'Assign rights' => 'Asignar derechos',
-    'Assign' => 'Asignar'
+    'Assign' => 'Asignar',
 
     'View' => 'Ver',
     'Update' => 'Actualizar',

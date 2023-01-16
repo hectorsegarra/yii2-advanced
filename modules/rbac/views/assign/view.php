@@ -11,14 +11,14 @@ use modules\rbac\Module;
 $this->title = Module::translate('module', 'Role Based Access Control');
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'RBAC'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'Assign'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Html::encode($model->username);
+$this->params['breadcrumbs'][] = Html::encode($model->userFullName);
 ?>
 
 <div class="rbac-assign-view">
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title"><?= Module::translate('module', 'View') ?>
-                <small><?= Html::encode($model->username) ?></small>
+                <small><?= Html::encode($model->userFullName) ?></small>
             </h3>
         </div>
         <div class="box-body">
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = Html::encode($model->username);
                             'attributes' => [
                                 'id',
                                 [
-                                    'attribute' => 'username',
+                                    'attribute' => 'userFullName',
                                     'label' => Module::translate('module', 'User'),
                                     'format' => 'raw'
                                 ],

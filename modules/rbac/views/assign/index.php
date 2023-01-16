@@ -45,11 +45,13 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Assign');
                     'class' => 'table table-bordered table-hover'
                 ],
                 'columns' => [
-                    ['class' => SerialColumn::class],
+                   //['class' => SerialColumn::class],
                     [
-                        'attribute' => 'username',
                         'label' => Module::translate('module', 'User'),
-                        'format' => 'raw'
+                        'format' => 'raw',
+                        'value' => function ($model){
+                            return $model->userFullName;
+                        }
                     ],
                     [
                         'attribute' => 'role',

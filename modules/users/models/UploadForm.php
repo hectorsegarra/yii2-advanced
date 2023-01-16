@@ -99,7 +99,11 @@ class UploadForm extends Model
     public function init()
     {
         parent::init();
-        $this->path = $this->path ?: $this->getPath(Yii::$app->user->id);
+        if($this->user_id){
+            $this->path = $this->path ?: $this->getPath($this->user_id);
+        }else{
+            $this->path = $this->path ?: $this->getPath(Yii::$app->user->id);
+        }
     }
 
     /**

@@ -17,6 +17,13 @@ use modules\users\Module;
  * @var $form yii\widgets\ActiveForm
  */
 
+if(Yii::$app->controller->id=='profile'){
+    $accionDestino='profile';
+}else{
+    $accionDestino='user';
+}
+
+
 if (Yii::$app->request->get('modal') === 'show') {
     $script = "
        $('#modal-image').modal('show');
@@ -73,8 +80,8 @@ if (Yii::$app->request->get('modal') === 'show') {
     </div>
     <div class="col-sm-5">
         <?php $form = ActiveForm::begin([
-            'action' => Url::to(['update-avatar']),
-            'validationUrl' => ['ajax-validate-avatar-form'],
+            'action' => Url::to(['/'.$accionDestino.'/update-avatar','id'=>$model->id]),
+            'validationUrl' => ['/profile/ajax-validate-avatar-form'],
         ]); ?>
 
         <?= $form->field($model->profile, 'email_gravatar', ['enableAjaxValidation' => true])->textInput([
@@ -97,7 +104,12 @@ if (Yii::$app->request->get('modal') === 'show') {
         </div>
         <?php ActiveForm::end(); ?>
         <hr>
-        <?= UploadAvatarForm::widget() ?>
+        <?= UploadAvatarForm::widget([
+            
+                'user_id' => $model->id,
+            
+        ]) ?>
+
     </div>
 </div>
 
@@ -130,14 +142,18 @@ Modal::begin(
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin([
                 'id' => 'crop-avatar-form',
-                'action' => Url::to(['crop-avatar']),
+                'action' => Url::to(['/'.$accionDestino.'/crop-avatar','id'=>$model->id]),
             ]) ?>
             <div class="form-group">
+                <?php
+               
+                ?>
                 <?= JCrop::widget([
                     'image' => Url::to(
                         [
                             '/users/profile/avatar',
-                            'filename' => $uploadFormModel::PREFIX_THUMBNAIL . $uploadFormModel->getFileName()
+                            'filename' => $uploadFormModel::PREFIX_THUMBNAIL . $uploadFormModel->getFileName(),
+                            'user_id'=>$uploadFormModel->user_id,
                         ]
                     ),
                     'pluginOptions' => [

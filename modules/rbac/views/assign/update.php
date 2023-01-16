@@ -9,7 +9,7 @@ use modules\rbac\Module;
 $this->title = Module::translate('module', 'Role Based Access Control');
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'RBAC'), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'Assign'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->user->username, 'url' => ['view', 'id' => $model->user->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->user->userFullName, 'url' => ['view', 'id' => $model->user->id]];
 $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
 ?>
 
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title"><?= Module::translate('module', 'Update') ?>
-                <small><?= Html::encode($model->user->username) ?></small>
+                <small><?= Html::encode($model->user->userFullName) ?></small>
             </h3>
         </div>
         <div class="box-body">
