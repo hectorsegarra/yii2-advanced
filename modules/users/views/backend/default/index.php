@@ -101,7 +101,7 @@ $this->registerJs($js, View::POS_END);
                     'class' => 'table table-bordered table-hover',
                 ],
                 'columns' => [
-                    ['class' => SerialColumn::class],
+                    //['class' => SerialColumn::class],
                     [
                         'attribute' => 'userFullName',
                         'label' => Module::translate('module', 'Users'),

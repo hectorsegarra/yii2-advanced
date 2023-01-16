@@ -18,6 +18,8 @@ use modules\users\models\User;
 use modules\users\models\UserProfile;
 use modules\users\models\search\UserSearch;
 use modules\users\Module;
+use yii\web\UploadedFile;
+use modules\users\models\UploadForm;
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
 
 /**

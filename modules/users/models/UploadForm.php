@@ -86,6 +86,7 @@ class UploadForm extends Model
      */
     public $cropQuality = 100;
 
+    public $user_id;
     /**
      * Upload path
      * @var string|bool

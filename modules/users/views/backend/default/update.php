@@ -10,10 +10,10 @@ use modules\users\Module;
  */
 
 $this->title = Module::translate('module', 'Update');
-$this->params['title']['small'] = $model->username;
+$this->params['title']['small'] = $model->userFullName;
 
 $this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'Users'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->username, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->userFullName, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
 ?>
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
         <?php $form = ActiveForm::begin(); ?>
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
 
                     <?= $form->field($model, 'email')->textInput([
                         'maxlength' => true,
@@ -46,17 +46,18 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Update');
                         'placeholder' => true,
                     ]) ?>
                 </div>
-
-                <?php
-                    echo $this->renderFile(Yii::getAlias('@modules/users/views/backend/default/_form.php'), [
-                        'model' => $model,
-                        'profile' => $model->profile,
-                        'uploadFormModel' => $uploadFormModel,
-                        'form'=>$form,
-                    ]);
-                ?>
-
-
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <?php
+                        echo $this->renderFile(Yii::getAlias('@modules/users/views/backend/default/_form.php'), [
+                            'model' => $model,
+                            'profile' => $model->profile,
+                            'uploadFormModel' => $uploadFormModel,
+                            'form'=>$form,
+                        ]);
+                    ?>
+                </div>
             </div>
         </div>
         <div class="box-footer">
