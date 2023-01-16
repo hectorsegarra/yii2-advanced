@@ -13,9 +13,9 @@ use modules\users\widgets\AvatarWidget;
             'imageOptions' => [
                 'class' => 'profile-user-img img-responsive img-circle',
                 'style' => 'width:60px',
-                'alt' => 'avatar_' . $model->username,
+                'alt' => 'avatar_' . $model->userFullName,
             ]
         ]) ?>
-        <?= $model->username ?>
+        <?= $model->userFullName ?>
     </div>
 </div>

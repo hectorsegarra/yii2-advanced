@@ -69,18 +69,8 @@ $this->registerJs($js, View::POS_END);
         ]); ?>
         <div class="box-body">
             <div class="pull-left">
-                <?= common\widgets\PageSize::widget([
-                    'label' => '',
-                    'defaultPageSize' => 25,
-                    'sizes' => [10 => 10, 15 => 15, 20 => 20, 25 => 25, 50 => 50, 100 => 100, 200 => 200],
-                    'options' => [
-                        'class' => 'form-control'
-                    ]
-                ]) ?>
-            </div>
-            <div class="pull-right">
                 <p>
-                    <?= Html::a('<span class="fa fa-plus"></span> ', ['create'], [
+                    <?= Html::a('<span class="fa fa-plus"></span> '.Module::translate('module', 'Create'), ['create'], [
                         'class' => 'btn btn-block btn-success',
                         'title' => Module::translate('module', 'Create'),
                         'data' => [
@@ -90,6 +80,16 @@ $this->registerJs($js, View::POS_END);
                         ],
                     ]) ?>
                 </p>
+            </div>
+            <div class="pull-right">
+                <?= common\widgets\PageSize::widget([
+                    'label' => '',
+                    'defaultPageSize' => 25,
+                    'sizes' => [10 => 10, 15 => 15, 20 => 20, 25 => 25, 50 => 50, 100 => 100, 200 => 200],
+                    'options' => [
+                        'class' => 'form-control'
+                    ]
+                ]) ?>
             </div>
             <?= GridView::widget([
                 'id' => 'grid-users',
@@ -262,7 +262,7 @@ $this->registerJs($js, View::POS_END);
                                             'module',
                                             'The user "{:name}" will be marked as deleted!',
                                             [
-                                                ':name' => $model->username
+                                                ':name' => $model->userFullName
                                             ]
                                         ),
                                     ]

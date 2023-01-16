@@ -60,7 +60,7 @@ class DefaultController extends Controller
             /** @var User $identity */
             $identity = Yii::$app->user->identity;
             $session->setFlash('info', Module::translate('module', 'Welcome, {:username}!', [
-                ':username' => $identity->username
+                ':username' => $identity->userFullName
             ]));
             $session->set($key, 1);
         }
