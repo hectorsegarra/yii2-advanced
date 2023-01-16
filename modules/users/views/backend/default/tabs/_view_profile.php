@@ -26,7 +26,7 @@ UserAsset::register($this);
             'imageOptions' => [
                 'class' => 'profile-user-img img-responsive img-circle',
                 'style' => 'margin-bottom:10px; width:auto',
-                'alt' => 'avatar_' . $model->username,
+                'alt' => 'avatar_' . $model->userFullName,
             ]
         ]) ?>
     </div>
@@ -35,7 +35,6 @@ UserAsset::register($this);
             'model' => $model,
             'attributes' => [
                 'id',
-                'username',
                 'profile.first_name',
                 'profile.last_name',
                 'email:email',

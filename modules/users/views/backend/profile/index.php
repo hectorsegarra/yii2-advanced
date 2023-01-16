@@ -30,7 +30,7 @@ $items = [
 <div class="users-backend-profile-index">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title"><?= Html::encode($model->username) ?></h3>
+            <h3 class="box-title"><?= Html::encode($model->userFullName) ?></h3>
         </div>
         <div class="nav-tabs-custom">
             <?= Tabs::widget([

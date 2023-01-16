@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Home' => 'Casa',
+    'Home' => 'Inicio',
     'About' => 'Acerca de',
     'Contact' => 'Contacto',
     'Dashboard' => 'Tablero',
