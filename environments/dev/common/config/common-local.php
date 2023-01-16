@@ -32,6 +32,12 @@ if (!YII_ENV_TEST && YII_ENV_DEV) {
                     'mycrud' => '@common/gii/generators/crud/inttegrum',
                 ]
             ],
+            'yii2-model' => [
+                'class' => ModelGenerator::class,
+                'templates' => [
+                    'mymodel' => '@common/gii/generators/model/default',
+                ]
+            ],
         ]
     ];
 }
