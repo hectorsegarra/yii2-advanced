@@ -43,7 +43,6 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-        $this->readValue($model, 'username');
         $this->readValue($model, 'email');
         $model->setPassword($this->prompt(Module::translate('module', 'Password:'), [
             'required' => true,
