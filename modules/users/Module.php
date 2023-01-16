@@ -11,9 +11,9 @@ use yii\console\Application as ConsoleApplication;
  */
 class Module extends \yii\base\Module
 {
-    /**
-     * Время в сек, когда пользователей со статусом "Ожидает", можно удалять
-     * В основном для Cron задачи.
+     /**
+     * Tiempo en segundos en que se pueden eliminar usuarios con estado "Pendiente"
+     * Principalmente para tareas de Cron.
      * ```
      * php yii users/cron/remove-overdue
      * ```
@@ -32,7 +32,8 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'modules\users\controllers\frontend';
 
     /**
-     * @var bool Если модуль используется для админ-панели.
+     * @var bool Si el módulo se utiliza para el panel de administración.
+
      */
     public $isBackend;
 
@@ -43,7 +44,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // Это здесь для того, чтобы переключаться между frontend и backend
+        // Está aquí para cambiar entre frontend y backend
         if ($this->isBackend === true) {
             $this->controllerNamespace = 'modules\users\controllers\backend';
             $this->setViewPath('@modules/users/views/backend');
