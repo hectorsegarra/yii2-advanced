@@ -17,6 +17,7 @@ if (!YII_ENV_TEST && YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => GiiModule::class,
+        'allowedIPs' => ['127.0.0.1', ''],
         'generators' => [
             'yii2-module' => [
                 'class' => ModuleGenerator::class,
@@ -28,6 +29,7 @@ if (!YII_ENV_TEST && YII_ENV_DEV) {
                 'class' => CrudGenerator::class,
                 'templates' => [
                     'mycrud' => '@common/gii/generators/crud/default',
+                    'mycrud' => '@common/gii/generators/crud/inttegrum',
                 ]
             ],
         ]
