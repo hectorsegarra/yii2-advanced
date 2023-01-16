@@ -24,11 +24,6 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Create');
         <?php $form = ActiveForm::begin(); ?>
         <div class="box-body">
 
-            <?= $form->field($model, 'username')->textInput([
-                'maxlength' => true,
-                'placeholder' => true,
-            ]) ?>
-
             <?= $form->field($model, 'email')->textInput([
                 'maxlength' => true,
                 'placeholder' => true,
@@ -40,6 +35,16 @@ $this->params['breadcrumbs'][] = Module::translate('module', 'Create');
             ]) ?>
 
             <?= $form->field($model, 'status')->dropDownList($model->statusesArray) ?>
+
+
+            <?php
+                echo $this->renderFile(Yii::getAlias('@modules/users/views/backend/default/_form.php'), [
+                    'model' => $model,
+                    'profile' => $profile,
+                    'form'=>$form,
+                ]);
+            ?>
+
 
 
         </div>

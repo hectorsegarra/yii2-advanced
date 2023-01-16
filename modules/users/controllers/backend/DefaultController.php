@@ -15,6 +15,7 @@ use modules\users\models\LoginForm;
 use modules\rbac\models\Permission;
 use modules\rbac\models\Assignment;
 use modules\users\models\User;
+use modules\users\models\UserProfile;
 use modules\users\models\search\UserSearch;
 use modules\users\Module;
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
@@ -175,24 +176,37 @@ class DefaultController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Creates a new User model.
-     * @return string|Response
-     * @throws Exception
-     */
+    
+
+
     public function actionCreate()
     {
         $model = new User();
+        $profile = new UserProfile();
         $model->scenario = $model::SCENARIO_ADMIN_CREATE;
         $model->status = $model::STATUS_WAIT;
+
+        
         if ($model->load(Yii::$app->request->post())) {
             $model->setPassword($model->password);
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                //guardo el perfil
+                $profile->load(Yii::$app->request->post());
+                $profile->user_id=$model->id;
+                $profile->save();
+
+                //Creamos el permiso de usuario en los permisos de Yii2
+                $modelAssignment = new Assignment();
+                $modelAssignment->userId=$model->id;
+                $modelAssignment->roleName="user";
+                $modelAssignment->save();
+                
+                return $this->redirect(['index', 'id' => $model->id]);
             }
         }
         return $this->render('create', [
-            'model' => $model
+            'model' => $model,
+            'profile' => $profile,
         ]);
     }
 
@@ -202,19 +216,41 @@ class DefaultController extends Controller
      * @throws NotFoundHttpException
      * @throws Exception
      */
+    /**
+     * @param int|string $id
+     * @return string|Response
+     * @throws NotFoundHttpException
+     * @throws Exception
+     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $uploadFormModel = new UploadForm(['user_id'=>$id]);
+        
+
         if ($model->load(Yii::$app->request->post()) && $model->profile->load(Yii::$app->request->post())) {
             if (!empty($model->password)) {
                 $model->setPassword($model->password);
             }
-            if ($model->save() && $model->profile->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+
+            if ($model->save()) 
+            echo "1";
+            {
+                if ($model->profile->validate()) {
+                    // all inputs are valid
+                    $model->profile->save();
+                    } else {
+                    // validation failed: $errors is an array containing error messages
+                    print_r($model->profile->errors);
+                    exit;
+                    }
+                return $this->redirect(['index']);
             }
         }
         return $this->render('update', [
-            'model' => $model
+            'model' => $model,
+            'uploadFormModel' => $uploadFormModel,
         ]);
     }
 

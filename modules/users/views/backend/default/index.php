@@ -103,14 +103,7 @@ $this->registerJs($js, View::POS_END);
                 'columns' => [
                     ['class' => SerialColumn::class],
                     [
-                        'attribute' => 'username',
-                        'filter' => Html::activeInput('text', $searchModel, 'username', [
-                            'class' => 'form-control',
-                            'placeholder' => Module::translate('module', '- text -'),
-                            'data' => [
-                                'pjax' => true,
-                            ],
-                        ]),
+                        'attribute' => 'userFullName',
                         'label' => Module::translate('module', 'Users'),
                         'format' => 'raw',
                         'value' => function ($data) {
