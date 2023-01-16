@@ -23,7 +23,6 @@ class m161022_180040_create_table_user extends Migration
 
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey()->comment('ID'),
-            'username' => $this->string()->notNull()->unique()->comment('Username'),
             'email' => $this->string()->notNull()->unique()->comment('Email'),
             'auth_key' => $this->string(32)->notNull()->unique()->comment('Authorization Key'),
             'password_hash' => $this->string()->notNull()->comment('Hash Password'),

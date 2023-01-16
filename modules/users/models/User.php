@@ -20,7 +20,6 @@ use Throwable;
  * This is the model class for table "{{%user}}".
  *
  * @property int|string $id ID
- * @property string $username Username
  * @property string $email Email
  * @property string $auth_key Authorization Key
  * @property string $password_hash Hash Password
@@ -81,16 +80,6 @@ class User extends BaseUser
     public function rules()
     {
         return [
-            ['username', 'required'],
-            ['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
-            [
-                'username',
-                'unique',
-                'targetClass' => self::class,
-                'message' => Module::translate('module', 'This username is already taken.')
-            ],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
             ['email', 'required'],
             ['email', 'email'],
             [
@@ -125,7 +114,6 @@ class User extends BaseUser
     {
         return [
             'id' => Module::translate('module', 'ID'),
-            'username' => Module::translate('module', 'Username'),
             'email' => Module::translate('module', 'Email'),
             'auth_key' => Module::translate('module', 'Auth Key'),
             'password_hash' => Module::translate('module', 'Hash Password'),
@@ -207,7 +195,7 @@ class User extends BaseUser
     }
 
     /**
-     * Finds user by username or email
+     * Finds user by email
      *
      * @param string $string
      * @return array|null|ActiveRecord
@@ -215,7 +203,7 @@ class User extends BaseUser
     public static function findByUsernameOrEmail($string)
     {
         return static::find()
-            ->where(['or', ['username' => $string], ['email' => $string]])
+            ->where(['email' => $string])
             ->andWhere(['status' => self::STATUS_ACTIVE])
             ->one();
     }
@@ -296,7 +284,7 @@ class User extends BaseUser
         $fullName = Module::translate('module', 'Guest');
         if (!Yii::$app->user->isGuest) {
             $fullName = $this->profile->first_name . ' ' . $this->profile->last_name;
-            $fullName = ($fullName !== ' ') ? $fullName : $this->username;
+            $fullName = ($fullName !== ' ') ? $fullName : $this->email;
         }
         return Html::encode(trim($fullName));
     }

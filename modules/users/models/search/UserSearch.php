@@ -33,7 +33,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'status'], 'integer'],
-            [['username', 'email', 'role', 'userRoleName', 'date_from', 'date_to'], 'safe'],
+            [['email', 'role', 'userRoleName', 'date_from', 'date_to'], 'safe'],
         ];
     }
 
@@ -73,7 +73,6 @@ class UserSearch extends User
                 'defaultOrder' => ['id' => SORT_ASC],
                 'attributes' => [
                     'id',
-                    'username',
                     'email',
                     'status',
                     'userRoleName' => [
@@ -127,8 +126,7 @@ class UserSearch extends User
             'item_name' => $this->userRoleName,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
+        $query->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['>=', 'last_visit', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
             ->andFilterWhere(['<=', 'last_visit', $this->date_from ? strtotime($this->date_from . ' 23:59:59') : null]);
     }

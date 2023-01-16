@@ -11,13 +11,11 @@ use modules\users\Module;
  * Class SignupForm
  * @package modules\users\models
  *
- * @property string $username Username
  * @property string $email Email
  * @property string $password Password
  */
 class SignupForm extends Model
 {
-    public $username;
     public $email;
     public $password;
 
@@ -28,17 +26,6 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
-            [
-                'username',
-                'unique',
-                'targetClass' => User::class,
-                'message' => Module::translate('module', 'This username already exists.')
-            ],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
@@ -67,7 +54,6 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Module::translate('module', 'Username'),
             'email' => Module::translate('module', 'Email'),
             'password' => Module::translate('module', 'Password'),
         ];
@@ -83,7 +69,6 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->status = User::STATUS_WAIT;
