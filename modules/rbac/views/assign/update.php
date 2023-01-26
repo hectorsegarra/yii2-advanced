@@ -6,25 +6,48 @@ use modules\rbac\Module;
 /* @var $this yii\web\View */
 /* @var $model modules\rbac\models\Assignment */
 
-$this->title = Module::translate('module', 'Role Based Access Control');
-$this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'RBAC'), 'url' => ['default/index']];
-$this->params['breadcrumbs'][] = ['label' => Module::translate('module', 'Assign'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->user->userFullName, 'url' => ['view', 'id' => $model->user->id]];
-$this->params['breadcrumbs'][] = Module::translate('module', 'Update');
+$this->title = Module::translate('module', 'Permisos y roles');
+$this->params['title']['small'] = $modelUsuario->userFullName;
+
+//Configuramos el breadcrumb
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['/user/index']];
+$this->params['breadcrumbs'][] = ['label' => $modelUsuario->userFullName, 'url' => ['/user/update', 'id' => $modelUsuario->id]];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="rbac-assign-update">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?= Module::translate('module', 'Update') ?>
-                <small><?= Html::encode($model->user->userFullName) ?></small>
-            </h3>
-        </div>
+
+    <?=$this->render('@modules/users/views/backend/default/tabs/_menu_tabs',['modelUsuario'=>$modelUsuario]);?>
+
+    <div class="box box-primary">        
         <div class="box-body">
-            <?= $this->render('_form', [
-                'model' => $model
-            ]) ?>
-        </div>
+            <div class="row">    
+                <div class="col-md-6">
+                    <?= $this->render('_form', [
+                        'model' => $model
+                    ]) 
+                    ?>
+                </div>
+
+                <div class="col-md-6">
+                    <?php
+                    /** @var string $role */
+                    $role = $assignModel->getRoleUser($modelUsuario->id);
+                    $auth = Yii::$app->authManager;
+                    if ($permissionsRole = $auth->getPermissionsByRole($role)) : ?>
+                        <strong><?= Module::translate('module', 'Permisos otorgados por su rol actual.') ?></strong>
+                        <ul>
+                            <?php foreach ($permissionsRole as $value) {
+                                echo Html::tag(
+                                    'li',
+                                    $value->description . '(' . $value->name .' )'
+                                ) . PHP_EOL;
+                            } ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
         <div class="box-footer"></div>
     </div>
 </div>

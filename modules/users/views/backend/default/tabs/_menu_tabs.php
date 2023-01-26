@@ -14,7 +14,13 @@ echo Tabs::widget([
         [
             'label' => '<i class="fas fa-file-alt fa-fw"></i> Datos',
             'url' => '/admin/user/'.$modelUsuario->id.'/update',
-            'active' => strpos($url,'update'),//comprrobamos que la URL tenga la cadena
+            'active' => strpos($url,'admin/user/'),//comprrobamos que la URL tenga la cadena
+        ],
+        [
+            'label' => '<i class="fas fa-user-tag fa-fw"></i> Permisos y roles',
+            'url' => '/admin/rbac/assign/'.$modelUsuario->id.'/update',
+            'active' => strpos($url,'/rbac/assign'),//comprrobamos que la URL tenga la cadena
+            'visible' => 1
         ],
     ],
     'encodeLabels'=>false,

@@ -121,7 +121,7 @@ class AssignController extends Controller
         ]);
     }
 
-    /**
+   /**
      * @param string|int $id
      * @return string|Response
      * @throws NotFoundHttpException
@@ -129,6 +129,8 @@ class AssignController extends Controller
      */
     public function actionUpdate($id)
     {
+        $modelUsuario=User::findOne($id);
+        $assignModel = new Assignment();
         $model = new Assignment([
             'user' => $this->findModel($id)
         ]);
@@ -146,7 +148,9 @@ class AssignController extends Controller
         }
         $model->role = $model->getRoleUser($id);
         return $this->render('update', [
-            'model' => $model
+            'model' => $model,
+            'modelUsuario'=>$modelUsuario,
+            'assignModel' => $assignModel
         ]);
     }
 
