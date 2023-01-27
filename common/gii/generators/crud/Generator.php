@@ -38,7 +38,7 @@ class Generator extends \yii\gii\Generator
      * @var bool whether to wrap the `GridView` or `ListView` widget with the `yii\widgets\Pjax` widget
      * @since 2.0.5
      */
-    public $enablePjax = false;
+    public $enablePjax = true;
     public $enablePageSize = true;
 
 
@@ -47,7 +47,7 @@ class Generator extends \yii\gii\Generator
      */
     public function getName()
     {
-        return 'AdminLTE CRUD Generator';
+        return 'Inttegrum CRUD Generator';
     }
 
     /**
@@ -55,8 +55,7 @@ class Generator extends \yii\gii\Generator
      */
     public function getDescription()
     {
-        return 'This generator generates a controller and views that implement CRUD (Create, Read, Update, Delete)
-            operations for the specified data model.';
+        return 'Este generador genera un controlador y vistas que implementan operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para el modelo de datos especificado..';
     }
 
     /**
@@ -72,7 +71,7 @@ class Generator extends \yii\gii\Generator
             [['modelClass'], 'validateClass', 'params' => ['extends' => BaseActiveRecord::className()]],
             [['baseControllerClass'], 'validateClass', 'params' => ['extends' => Controller::className()]],
             [['controllerClass'], 'match', 'pattern' => '/Controller$/', 'message' => 'Controller class name must be suffixed with "Controller".'],
-            [['controllerClass'], 'match', 'pattern' => '/(^|\\\\)[A-Z][^\\\\]+Controller$/', 'message' => 'Controller class name must start with an uppercase letter.'],
+            [['controllerClass'], 'match', 'pattern' => '/(^|\\\\)[A-Z][^\\\\]+Controller$/', 'message' => 'El nombre de la clase del controlador debe comenzar con una letra mayúscula..'],
             [['controllerClass', 'searchModelClass'], 'validateNewClass'],
             [['indexWidgetType'], 'in', 'range' => ['grid', 'list']],
             [['modelClass'], 'validateModelClass'],
@@ -105,27 +104,14 @@ class Generator extends \yii\gii\Generator
     public function hints()
     {
         return array_merge(parent::hints(), [
-            'modelClass' => 'This is the ActiveRecord class associated with the table that CRUD will be built upon.
-                You should provide a fully qualified class name, e.g., <code>app\models\Post</code>.',
-            'controllerClass' => 'This is the name of the controller class to be generated. You should
-                provide a fully qualified namespaced class (e.g. <code>app\controllers\PostController</code>),
-                and class name should be in CamelCase with an uppercase first letter. Make sure the class
-                is using the same namespace as specified by your application\'s controllerNamespace property.',
-            'viewPath' => 'Specify the directory for storing the view scripts for the controller. You may use path alias here, e.g.,
-                <code>/var/www/basic/controllers/views/post</code>, <code>@app/views/post</code>. If not set, it will default
-                to <code>@app/views/ControllerID</code>',
-            'baseControllerClass' => 'This is the class that the new CRUD controller class will extend from.
-                You should provide a fully qualified class name, e.g., <code>yii\web\Controller</code>.',
-            'indexWidgetType' => 'This is the widget type to be used in the index page to display list of the models.
-                You may choose either <code>GridView</code> or <code>ListView</code>',
-            'searchModelClass' => 'This is the name of the search model class to be generated. You should provide a fully
-                qualified namespaced class name, e.g., <code>app\models\PostSearch</code>.',
-            'enablePjax' => 'This indicates whether the generator should wrap the <code>GridView</code> or <code>ListView</code>
-                widget on the index page with <code>yii\widgets\Pjax</code> widget. Set this to <code>true</code> if you want to get
-                sorting, filtering and pagination without page refreshing.',
-            'enablePageSize' => 'This indicates whether the generator should wrap the <code>GridView</code> widget on the index page
-                with <code>common\widgets\PageSize</code> widget. Set this to <code>true</code> if you want to 
-                be able to select number the display items on the page.',
+                "modelClass" => "Este es la clase ActiveRecord asociada con la tabla sobre la cual se construirá CRUD. Debe proporcionar un nombre de clase completamente calificado, por ejemplo, <code>app\models\Post</code>.",
+                "controllerClass" => "Este es el nombre de la clase del controlador que se generará. Debe proporcionar un nombre de clase con espacio de nombres completo (por ejemplo, <code>app\controllers\PostController</code>), y el nombre de la clase debe estar en CamelCase con una primera letra en mayúscula. Asegúrese de que la clase esté utilizando el mismo espacio de nombres que el especificado por la propiedad controllerNamespace de su aplicación.",
+                "viewPath" => "Especifique el directorio para almacenar los scripts de vista para el controlador. Puede usar alias de ruta aquí, por ejemplo, <code>/var/www/basic/controllers/views/post</code>, <code>@app/views/post</code>. Si no se establece, se establecerá en <code>@app/views/ControllerID</code>",
+                "baseControllerClass" => "Esta es la clase de la que se extenderá la nueva clase de controlador CRUD. Debe proporcionar un nombre de clase completamente calificado, por ejemplo, <code>yii\web\Controller</code>.",
+                "indexWidgetType" => "Este es el tipo de widget que se utilizará en la página de índice para mostrar la lista de los modelos. Puede elegir entre <code>GridView</code> o <code>ListView</code>",
+                "searchModelClass" => "Este es el nombre de la clase de modelo de búsqueda que se generará. Debe proporcionar un nombre de clase con espacio de nombres completo, por ejemplo, <code>app\models\PostSearch</code>.",
+                "enablePjax" => "Indica si el generador debe envolver el widget <code>GridView</code> o <code>ListView</code> en la página de índice con el widget <code>yii\widgets\Pjax</code>. Establezca esto en <code>true</code> si desea obtener clasificación, filtrado y paginación sin actualización de página.",
+                "enablePageSize" => "Esto indica si el generador debe envolver el widget <code>GridView</code> en la página de índice con el widget <code>common\widgets\PageSize</code>. Establezca esto en <code>true</code> si desea poder seleccionar el número de elementos que se muestran en la página."
         ]);
     }
 

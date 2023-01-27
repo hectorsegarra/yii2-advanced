@@ -27,7 +27,7 @@ class Generator extends BaseGenerator
      */
     public function getName()
     {
-        return 'Module Advanced Generator';
+        return 'Inttegrum Module Generator';
     }
 
     /**
