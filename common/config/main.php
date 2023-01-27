@@ -16,7 +16,7 @@ $params = ArrayHelper::merge(
 );
 
 return [
-    'name' => 'Yii2-advanced-start',
+    'name' => 'Aplicación',
     'timeZone' => 'Europe/Madrid',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'aliases' => [
