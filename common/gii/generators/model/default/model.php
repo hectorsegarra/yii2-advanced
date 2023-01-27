@@ -68,7 +68,11 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     public function attributeLabels()
     {
         return [
-<?php foreach ($labels as $name => $label): ?>
+<?php
+      $tieneCampoNombre=0;
+      foreach ($labels as $name => $label): 
+            if($name=='nombre'){$tieneCampoNombre=1;}
+      ?>
             <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
 <?php endforeach; ?>
         ];
@@ -97,4 +101,15 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
+
+<?php if($tieneCampoNombre==1){?>
+    /**
+     * Devuelve un array con el id y el nombre (ideal para crear dropdowns)
+    **/
+    public function getDropdown()
+    {
+        $aux = self::find()->all();
+        return ArrayHelper::map($aux, 'id', 'nombre');        
+    }
+<?php } ?>
 }
