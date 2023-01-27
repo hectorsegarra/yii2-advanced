@@ -242,6 +242,10 @@ Create user, enter the command and follow the instructions:
 php yii users/user/create
 ```
 
+En Plesk tener en cuenta quitar esta opcion (dentro de Apache & nginx Settings):
+Restrict the ability to follow symbolic links
+
+
 - Username: set username (admin);
 - Email: set email (`admin@example.com`);
 - Password: set password (min 6 symbol);
