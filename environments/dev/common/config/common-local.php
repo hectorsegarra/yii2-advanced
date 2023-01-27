@@ -2,8 +2,10 @@
 
 use yii\debug\Module as DebugModule;
 use yii\gii\Module as GiiModule;
+use common\gii\generators\model\Generator as ModelGenerator;
 use common\gii\generators\module\Generator as ModuleGenerator;
 use common\gii\generators\crud\Generator as CrudGenerator;
+
 
 if (!YII_ENV_TEST && YII_DEBUG) {
     // configuring in debug mode
