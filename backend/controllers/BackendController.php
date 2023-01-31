@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use yii\base\Action;
+use yii\base\Action; 
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ErrorAction;
