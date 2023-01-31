@@ -2,10 +2,9 @@
 
 use yii\debug\Module as DebugModule;
 use yii\gii\Module as GiiModule;
-use common\gii\generators\model\Generator as ModelGenerator;
 use common\gii\generators\module\Generator as ModuleGenerator;
 use common\gii\generators\crud\Generator as CrudGenerator;
-
+use common\gii\generators\model\Generator as ModelGenerator;
 
 if (!YII_ENV_TEST && YII_DEBUG) {
     // configuring in debug mode
@@ -19,7 +18,7 @@ if (!YII_ENV_TEST && YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => GiiModule::class,
-        'allowedIPs' => ['127.0.0.1', ''],
+        'allowedIPs' => ['127.0.0.1', '188.26.219.68'],
         'generators' => [
             'yii2-module' => [
                 'class' => ModuleGenerator::class,
@@ -30,7 +29,6 @@ if (!YII_ENV_TEST && YII_ENV_DEV) {
             'yii2-crud' => [
                 'class' => CrudGenerator::class,
                 'templates' => [
-                    'mycrud' => '@common/gii/generators/crud/default',
                     'mycrud' => '@common/gii/generators/crud/inttegrum',
                 ]
             ],

@@ -39,6 +39,7 @@ use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
@@ -46,17 +47,55 @@ use yii\filters\VerbFilter;
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
+     * @return array
      */
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'verbs' => $this->getVerb(),
+            'access' => $this->getAccess()
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getVerb()
+    {
+        return [
+            'class' => VerbFilter::class,
+            'actions' => [
+                'delete' => ['POST'],
+                'logout' => ['POST']
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getAccess()
+    {
+        return [
+            'class' => AccessControl::class,
+            'rules' => [
+                [
+                    'actions' => ['login'],
+                    'allow' => true,
+                    'roles' => ['?']
                 ],
-            ],
+                [
+                    'actions' => ['logout'],
+                    'allow' => true,
+                    'roles' => ['@']
+                ],
+                [
+                    'allow' => true,
+                    'roles' => ['@'] //todos los usuarios autenticados.
+                    //'roles' => ['rol']
+                ]
+            ]
         ];
     }
 
@@ -108,7 +147,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $model = new <?= $modelClass ?>();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?= $urlParams ?>]);
+            return $this->redirect(['edit']);
         }
 
         return $this->render('create', [
@@ -128,7 +167,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $model = $this->findModel(<?= $actionParams ?>);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?= $urlParams ?>]);
+            return $this->redirect(['edit']);
         }
 
         return $this->render('update', [
