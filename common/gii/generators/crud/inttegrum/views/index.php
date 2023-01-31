@@ -129,14 +129,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     } else {
                         foreach ($tableSchema->columns as $column) {
                             $format = $generator->generateColumnFormat($column);
-                            if ($column->name=='id') {
-                                echo "                    //'" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+                            if ($column->name=='id') {?>
+[
+                        'attribute' => '<?=$column->name?>',
+                        'format'=>'<?=$format?>',
+                        'visible' => false,
+                    ],
+<?php
                                 ++$count;
                             }
                             else if (++$count < 6) {
-                                echo "                    '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+?>
+                    [
+                        'attribute' => '<?=$column->name?>',
+                        'format'=>'<?=$format?>',
+                        'visible' => true,
+                    ],
+<?php
                             } else {
-                                echo "                    //'" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+?>
+                    [
+                        'attribute' => '<?=$column->name?>',
+                        'format'=>'<?=$format?>',
+                        'visible' => false,
+                    ],
+<?php
                             }
                         }
                     }
