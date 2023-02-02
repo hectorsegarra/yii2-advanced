@@ -222,20 +222,59 @@ class Generator extends \yii\gii\Generator
     public function generateActiveField($attribute)
     {
         $tableSchema = $this->getTableSchema();
+        
         if ($tableSchema === false || !isset($tableSchema->columns[$attribute])) {
-            if (preg_match('/^(password|pass|passwd|passcode)$/i', $attribute)) {
+            if (preg_match('/^(password|pass|passwd|passcode|contrasena)$/i', $attribute)) {
                 return "\$form->field(\$model, '$attribute')->passwordInput()";
             }
-
             return "\$form->field(\$model, '$attribute')";
         }
+
         $column = $tableSchema->columns[$attribute];
+
+        //boolean
         if ($column->phpType === 'boolean') {
             return "\$form->field(\$model, '$attribute')->checkbox()";
         }
 
+        //TYPE_DATE
+        if ($column->type === Schema::TYPE_DATE) {
+            $output="\$form->field(\$model, '$attribute')->widget(DateControl::classname(), [
+                        'type'=>DateControl::FORMAT_DATE,
+                        'ajaxConversion' => true,
+                        'autoWidget' => true,
+                    ])";
+            return $output;
+        }
+
+        //TYPE_TIME
+        if ($column->type === Schema::TYPE_TIME) {
+            $output="\$form->field(\$model, '$attribute')->widget(DateControl::classname(), [
+                        'type'=>DateControl::FORMAT_TIME,
+                        'ajaxConversion' => true,
+                        'autoWidget' => true,
+                    ])";
+            return $output;
+        }
+
+        //TYPE_DATETIME
+        if ($column->type === Schema::TYPE_DATETIME) {
+            $output="\$form->field(\$model, '$attribute')->widget(DateControl::classname(), [
+                        'type'=>DateControl::FORMAT_DATETIME,
+                        'ajaxConversion' => true,
+                        'autoWidget' => true,
+                    ])";
+            return $output;
+        }
+
+        //TYPE_TINYINT
+        if ($column->type === Schema::TYPE_TINYINT) {
+            return "\$form->field(\$model, '$attribute')->checkbox()";
+        }
+        
+        //text
         if ($column->type === 'text') {
-            return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
+            return "\$form->field(\$model, '$attribute')->textarea(['rows' => 4])";
         }
 
         if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {

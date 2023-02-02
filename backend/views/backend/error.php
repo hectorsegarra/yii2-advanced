@@ -25,21 +25,6 @@ $homeUrl = is_string(Yii::$app->homeUrl) ? Yii::$app->homeUrl : '/';
                 ]) ?>
             </p>
 
-            <form class="search-form">
-                <div class="input-group">
-                    <label for="search-input"></label>
-                    <input id="search-input" type="text" name="search" class="form-control"
-                           placeholder="<?= Yii::t('app', 'Search') ?>">
-
-
-                    <div class="input-group-btn">
-                        <button type="submit" name="submit" class="btn btn-warning btn-flat"><i
-                                    class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
         </div>
     </div>
 

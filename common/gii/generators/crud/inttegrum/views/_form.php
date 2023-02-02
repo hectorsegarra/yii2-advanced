@@ -3,6 +3,7 @@
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
+ 
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
 
@@ -17,7 +18,8 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\widgets\ActiveForm; 
+//use kartik\datecontrol\DateControl; //Descomentar esto si hay fechas 
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -35,9 +37,13 @@ use yii\widgets\ActiveForm;
                         if (in_array($attribute, $safeAttributes)) {
                             if($vez==1){
                                 $vez=2;
-                                echo "<div class='col-lg-6'><?=" . $generator->generateActiveField($attribute) . "?></div>\n";
+                                echo "<div class='col-lg-6'>
+                    <?=" . $generator->generateActiveField($attribute) . "?>
+                </div>\n";
                             }else{
-                                echo "                <div class='col-lg-6'><?=" . $generator->generateActiveField($attribute) . "?></div>\n";
+                                echo "                <div class='col-lg-6'>
+                    <?=" . $generator->generateActiveField($attribute) . "?>
+                </div>\n";
                             }
                             if (++$i % 2 == 0) {
                                 echo "            </div>\n            <div class='row'>\n";
@@ -45,7 +51,8 @@ use yii\widgets\ActiveForm;
                         }
                     }
                     if ($i % 2 != 0) {
-                        echo "                <div class='col-lg-6'></div>\n";
+                        echo "                <div class='col-lg-6'>
+                        </div>\n";
                     }
                 ?>
             </div>
