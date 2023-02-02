@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="box-footer">
             <div class="form-group">
-                <?= "<?= " ?>Html::submitButton('<span class="fas fa-save"></span> '.<?= $generator->generateString('Save') ?>, ['class' => 'btn btn-success']) ?>
+            <?= "<?= " ?>Html::submitButton('<span class="fas fa-save"></span> '.<?= $generator->generateString('Guardar') ?>, ['class' => 'btn btn-success']) ?>
             </div>
         </div>
     <?= "<?php " ?>ActiveForm::end(); ?>
