@@ -222,13 +222,6 @@ $homeUrl = is_string(Yii::$app->homeUrl) ? Yii::$app->homeUrl : '/';
                             ]),
                             'url' => ['/rbac/roles/index']
                         ],
-                        [
-                            'label' => $this->render('_label', [
-                                'icon' => 'far fa-circle',
-                                'title' => RbacModule::translate('module', 'Assign')
-                            ]),
-                            'url' => ['/rbac/assign/index']
-                        ]
                     ]
                 ],
                 [
