@@ -21,10 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
     'id' => 'login-form'
 ]); ?>
 
+
+
 <div class="form-group has-feedback">
     <?= $form->field($model, 'email')->textInput([
         'class' => 'form-control',
-        'placeholder' => Module::translate('module', 'Email')
+        'placeholder' => Module::translate('module', 'Email'),
+        ['autofocus' => true],
     ])->label(false) ?>
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 </div>
@@ -36,12 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 </div>
 <div class="row">
-    <div class="col-xs-8">
+    <div class="col-lg-12">
         <div class="checkbox icheck">
             <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'iCheck']) ?>
         </div>
     </div>
-    <div class="col-xs-4">
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
         <?= Html::submitButton(Module::translate('module', 'Sign In'), [
             'class' => 'btn btn-primary btn-block btn-flat',
             'name' => 'login-button'

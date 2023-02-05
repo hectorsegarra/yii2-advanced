@@ -36,7 +36,6 @@ $homeUrl = is_string(Yii::$app->homeUrl) ? Yii::$app->homeUrl : '/';
 </div>
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?= $homeUrl ?>"><b>Admin</b>LTE</a><br>
         <?= Yii::$app->name ?>
     </div>
     <div class="login-box-body">
