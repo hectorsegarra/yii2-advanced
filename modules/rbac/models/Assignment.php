@@ -13,7 +13,7 @@ use modules\rbac\Module;
  *
  * @property object $user User
  * @property string|int $id Id
- * @property string $username Username
+ * @property string $userId userId
  * @property mixed $role Role
  * @property-read array $rolesArray
  * @property bool $isNewRecord Is New Record
@@ -22,7 +22,7 @@ class Assignment extends Model
 {
     public $user;
     public $id;
-    public $username;
+    public $userId;
     public $role;
     public $isNewRecord = false;
 

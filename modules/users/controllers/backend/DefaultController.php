@@ -198,10 +198,15 @@ class DefaultController extends Controller
                 $profile->save();
 
                 //Creamos el permiso de usuario en los permisos de Yii2
-                $modelAssignment = new Assignment();
-                $modelAssignment->userId=$model->id;
-                $modelAssignment->roleName="user";
-                $modelAssignment->save();
+                // $modelAssignment = new Assignment();
+                // $modelAssignment->userId=$model->id;
+                // $modelAssignment->roleName="user";
+                // $modelAssignment->save();
+
+                $auth = Yii::$app->authManager;
+                $role = $auth->getRole('user');
+                $auth->assign($role, $model->id);
+
                 
                 return $this->redirect(['index', 'id' => $model->id]);
             }

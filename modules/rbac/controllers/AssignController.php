@@ -13,7 +13,7 @@ use yii\web\IdentityInterface;
 use yii\web\NotFoundHttpException;
 use yii\web\BadRequestHttpException;
 use yii\base\Action;
-use yii\web\Response;
+use yii\web\Response; 
 use Exception;
 use modules\rbac\models\Assignment;
 use modules\users\models\User;
@@ -95,7 +95,7 @@ class AssignController extends Controller
         $dataProvider = new ArrayDataProvider([
             'allModels' => $users,
             'sort' => [
-                'attributes' => ['username', 'role']
+                'attributes' => ['userId', 'role']
             ],
             'pagination' => [
                 'defaultPageSize' => 25
@@ -121,7 +121,7 @@ class AssignController extends Controller
         ]);
     }
 
-   /**
+    /**
      * @param string|int $id
      * @return string|Response
      * @throws NotFoundHttpException
@@ -171,9 +171,9 @@ class AssignController extends Controller
                     'success',
                     Module::translate(
                         'module',
-                        'User "{:username}" successfully unassigned.',
+                        'User "{:userFullName}" successfully unassigned.',
                         [
-                            ':username' => $model->username
+                            ':userFullName' => $model->userFullName
                         ]
                     )
                 );
@@ -191,9 +191,9 @@ class AssignController extends Controller
                 'warning',
                 Module::translate(
                     'module',
-                    'User "{:username}" is not attached to any role!',
+                    'User "{:userFullName}" is not attached to any role!',
                     [
-                        ':username' => $model->username
+                        ':userFullName' => $model->userFullName
                     ]
                 )
             );
