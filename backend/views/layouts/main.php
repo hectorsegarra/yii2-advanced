@@ -158,20 +158,6 @@ $homeUrl = is_string(Yii::$app->homeUrl) ? Yii::$app->homeUrl : '/';
 
         <section class="sidebar">
 
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <?= AvatarWidget::widget([
-                        'user_id' => $user->id
-                    ]) ?>
-                </div>
-                <div class="pull-left info">
-                    <p><?= $fullUserName ?></p>
-                    <a href="#">
-                        <i class="fas fa-circle text-success"></i> <?= Yii::t('app', 'Online') ?>
-                    </a>
-                </div>
-            </div>
-
             <?= SearchSidebar::widget(['status' => true]) ?>
 
             <?php
