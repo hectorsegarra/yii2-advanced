@@ -49,7 +49,10 @@ return [
             'params' => [
                 'userClass' => User::class
             ]
-        ]
+        ],
+        'search' => [
+            'isBackend' => true,
+        ],
     ],
     'controllerMap' => [
         'maintenance' => [

@@ -24,7 +24,9 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset'
     ],
-    'bootstrap' => [],
+    'bootstrap' => [
+        'modules\search\Bootstrap',
+    ],
     'container' => [
         'singletons' => [
             StateInterface::class => [
@@ -108,7 +110,10 @@ return [
         ],
         'rbac' => [
             'class' => RbacModule::class
-        ]
+        ],
+        'search' => [
+            'class' => 'modules\search\Module',
+        ],
     ],
     'components' => [
         'db' => [
