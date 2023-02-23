@@ -86,12 +86,9 @@ $homeUrl = is_string(Yii::$app->homeUrl) ? Yii::$app->homeUrl : '/';
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
 
-                    <?= MessagesWidget::widget([
-                        'status' => true,
-                        'image' => $publishedUrl ? Html::img($publishedUrl . '/img/user2-160x160.jpg', [
-                            'class' => 'img-circle',
-                            'alt' => 'User Image'
-                        ]) : '']) ?>
+                    <?=$this->renderFile('@root/modules/conversacion/views/backend/default/index.php', [
+                         
+                    ]);?>
 
                     <?= NotificationsWidget::widget(['status' => true]) ?>
 

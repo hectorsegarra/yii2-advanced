@@ -50,6 +50,9 @@ return [
                 'userClass' => User::class
             ]
         ],
+        'conversacion' => [
+            'isBackend' => true,
+        ],
         'search' => [
             'isBackend' => true,
         ],

@@ -25,6 +25,7 @@ return [
         '@npm' => '@vendor/npm-asset'
     ],
     'bootstrap' => [
+        'modules\conversacion\Bootstrap',
         'modules\search\Bootstrap',
     ],
     'container' => [
@@ -110,6 +111,9 @@ return [
         ],
         'rbac' => [
             'class' => RbacModule::class
+        ],
+        'conversacion' => [
+            'class' => 'modules\conversacion\Module',
         ],
         'search' => [
             'class' => 'modules\search\Module',
