@@ -45,7 +45,8 @@ return [
             'class' => MigrateController::class,
             'migrationNamespaces' => [
                 'modules\rbac\migrations',
-                'modules\users\migrations'
+                'modules\users\migrations',
+                'modules\conversacion\migrations',
             ]
         ],
         'maintenance' => [
